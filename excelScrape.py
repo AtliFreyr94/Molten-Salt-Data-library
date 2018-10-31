@@ -14,6 +14,8 @@ def excelScrape(fileName):
         #This loops through all column A and grabs the values stored in cells to the right
         for cell in tuple(sheet.columns)[0]:
             propertyName = cell.value
+            if propertyName == None:
+                continue
             row = cell.row
             col = cell.column
             newCell = 'B' + str(row)
