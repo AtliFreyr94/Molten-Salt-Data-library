@@ -1,7 +1,14 @@
+#excelScrape.py -- File that scrapes the excel file indicated by other files and creates the data in a asdf ready format
+
+#Feature to be added: Ability to scrape only one sheet specified by user
+
 import openpyxl
 from openpyxl.utils import get_column_letter
 import numpy
 
+#Main function, scrapes the entire excel file. Only works if the structure is as follows:
+# Property names in the A column and values in the columns to the right of the property name,
+# There can not be any gaps in data otherwise the scraper stops as the while loop only checks if the next column is not empty
 def excelScrape(fileName):
     dataSetList = []
     wb = openpyxl.load_workbook(fileName)
@@ -28,12 +35,13 @@ def excelScrape(fileName):
                 newCell = newCol + str(row)
                 i += 1
             #Convert all the data into numpy arrays, does't work on laptop, uncomment it later
-            #dataList = numpy.array(dataList)
+            dataList = numpy.array(dataList)
 
             #Add into dataSet
             dataSet[propertyName] = dataList
         dataSetList.append(dataSet)
     return dataSetList
 
-#Example call
-excelScrape('Cantor-1973.xlsx')
+#Example call, this line can be used to ensure any changes didn't break functionality
+dataSetList = excelScrape('example.xlsx')
+print(dataSetList)
