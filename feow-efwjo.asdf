@@ -1,0 +1,19 @@
+#ASDF 1.0.0
+#ASDF_STANDARD 1.2.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-1.1.0
+asdf_library: !core/software-1.0.0 {author: Space Telescope Science Institute, homepage: 'http://github.com/spacetelescope/asdf',
+  name: asdf, version: 2.1.0}
+history:
+  extensions:
+  - !core/extension_metadata-1.0.0
+    extension_class: asdf.extension.BuiltinExtension
+    software: {name: asdf, version: 2.1.0}
+BibTex: {author: jgoierja, doi: jgeioa, issn: jgioeaj, journal: agjea, language: gjeigw,
+  number: jgei, pages: ajgiewoa, publisher: ajg, title: jfeo, volume: jg, year: gjeowa}
+Created: 2018-10-29 18:31:40.261419
+FileName: feow-efwjo
+Updated: 2018-10-29 18:31:40.261419
+dataSets: Empty dataset
+...
