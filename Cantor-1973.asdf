@@ -1,0 +1,32 @@
+#ASDF 1.0.0
+#ASDF_STANDARD 1.2.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-1.1.0
+asdf_library: !core/software-1.0.0 {author: Space Telescope Science Institute, homepage: 'http://github.com/spacetelescope/asdf',
+  name: asdf, version: 2.1.0}
+history:
+  extensions:
+  - !core/extension_metadata-1.0.0
+    extension_class: asdf.extension.BuiltinExtension
+    software: {name: asdf, version: 2.1.0}
+DataSet1:
+  Property: [Density]
+  Salts: [LiF, BeF2, ThF4]
+  Composition: [0.7011, 0.2388, 0.0601]
+  Temperature (C): [555.1, 571.9, 580.9, 596.7, 606.2, 621.3, 628.7, 646.8, 655.1,
+    673.2, 681.2, 707.4]
+  Density (g/m3): [2.74, 2.727, 2.723, 2.711, 2.704, 2.694, 2.69, 2.677, 2.671, 2.66,
+    2.653, 2.639]
+  a: [3.1118]
+  b: [-0.0006707]
+metadata:
+  BibTex: {author: S.Cantor, doi: NA, issn: NA, journal: NA, language: En, number: NA,
+    pages: NA, publisher: NA, title: Density and Viscosity of Several Molten Fluorite
+      Mixtures, volume: NA, year: '1973'}
+  Created: 2018-10-31 16:38:34.431944
+  FileName: Cantor-1973
+  Updated: 2018-10-31 16:38:34.431944
+  datasets: 1
+  notes: Nope
+...

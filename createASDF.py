@@ -3,6 +3,9 @@
 import datetime
 import os
 import asdf
+import openpyxl
+import numpy
+from excelScrape import excelScrape
 
 def createBib():
 	#Gets reference information from user and outputs it in BibTex ready format
@@ -66,9 +69,16 @@ def createASDF():
 
 
 	dataSets = {}
+	dataIdx = 1
 	while dataCollection:
-		print('Running and excel scraper')
-		#Run an excel scraper
+		dataSetName = 'dataset'+str(dataIdx)
+		print('Showing current file directory')
+		print(os.listdir())
+		dataFile = input('Which file contains the desired data (type exact filename with extension)? ')
+		if dataFile.endswith('xlsx'):
+			dataSetList = excelScrape(dataFile)
+
+
 
 		userReq = input('Finished data collection? (Y or N): ')
 		if userReq.lower() != 'y':
@@ -77,9 +87,15 @@ def createASDF():
 
 
 	#Create and close the asdf file
+	metadata['datasets'] = len(dataSetList)
 	print('Creating asdf file')
-	af = asdf.AsdfFile(metadata)
-	af.write_to(fileName + '.asdf')
+	print('Metadata added')
+	print('Adding the datasets')
+	tree = {'metadata': metadata}
+	i = 1
+	for dataSet in dataSetList:
+		tree['DataSet' + str(i)] = dataSet
 	print('Asdf successfully created, returning to main menu')
+	af = asdf.AsdfFile(tree)
+	af.write_to(fileName + '.asdf')
 	#go back to main program
-
