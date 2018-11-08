@@ -47,7 +47,8 @@ def createBib():
 #Main function, handles the creation of new .asdf files
 def createASDF():
 	#Gather metadata for the file:
-	fileName = input('Requested filename, requested format Author-Year, Ex: Ross-2018: ')
+	fileName = input('Requested filename, requested format Author-Year, Ex: ross-2018: ')
+	fileName = filenName.lower()
 	dataSets = {}
 	print('Gathering reference information and building bib')
 	bib = createBib()
