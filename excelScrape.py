@@ -24,7 +24,6 @@ def excelScrape(fileName):
             if propertyName == None:
                 continue
             row = cell.row
-            col = cell.column
             newCell = 'B' + str(row)
             dataList = []
             i = 3
@@ -34,14 +33,14 @@ def excelScrape(fileName):
                 newCol = get_column_letter(i)
                 newCell = newCol + str(row)
                 i += 1
-            #Convert all the data into numpy arrays, does't work on laptop, uncomment it later
-            dataList = numpy.array(dataList)
+            
+            #Convert the data to numpy array only if they are datasets containing floating point numbers
+            if len(dataList) > 1 and (type(dataList[0]) == float or type([dataList[0]]) == int):
+                dataList = numpy.array(dataList)
 
             #Add into dataSet
             dataSet[propertyName] = dataList
         dataSetList.append(dataSet)
     return dataSetList
 
-#Example call, this line can be used to ensure any changes didn't break functionality
-dataSetList = excelScrape('example.xlsx')
-print(dataSetList)
+
