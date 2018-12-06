@@ -5,11 +5,12 @@ import os
 import asdf
 import shutil
 from excelScrape import excelScrape
+import sys
 
 def createBib(fileName):
-    
+
     #TODO: Other type of BibTex entries than just article
-    
+
 	#Gets reference information from user and outputs it in BibTex ready format
 
 	#Get user input
@@ -43,26 +44,40 @@ def createBib(fileName):
     'abstract': abstract
 
 	}
-    
+
     #Assuming Article format now we join all bib info into a string with correct format for LaTeX
 	bibList = ['@article{' + fileName + ',']
 	for key in bibDict:
 	    bibList.append(key + ' = {' + bibDict[key] + '},')
 	bibList[-1] = '}'
 	bib = '\n'.join(bibList)
+	print(bib)
 	return bib
 
+#Function asks user for a file containing the bib information and then prints it out to ask for confirmation
 def importBib():
-    print('Howdy partner, function not implemented yet')
-    return {}
+    print(os.listdir())
+    bibFileName = input('Which file contains the bib information (exact name with file extension): ')
+    bibFile = open(bibFileName)
+    bib = bibFile.read()
+    bibFile.close()
+    print(bib)
+    confirmBib = input('Is this bib format correct? (y or n): ')
+    if confirmBib.lower() == 'n':
+        print('Fix bib file and try again, process exiting')
+        sys.exit()
+    else:
+        return bib
 
 #Main function, handles the creation of new .asdf files
 def createASDF():
 	#Gather metadata for the file:
+	directorLoc = os.getcwd()
 	fileName = input('Requested filename, requested format Author-Year, Ex: ross-2018: ')
 	fileName = fileName.lower()
 	print('Gathering reference information and building bib')
 	manualCheck = input('Manual input(m) or import from external file (i): ')
+	os.chdir(directorLoc + '\\..\\InputFiles')
 	if manualCheck.lower() == 'm':
 	    bib = createBib(fileName)
 	else:
@@ -90,6 +105,7 @@ def createASDF():
 
 	#Add metadata and all datasets into the main asdf tree
 	metadata['dataSets'] = len(dataSetList)
+	os.chdir(directorLoc + '\\..\\Library')
 	print('Creating asdf file')
 	print('Metadata added')
 	print('Adding the datasets')
@@ -103,6 +119,6 @@ def createASDF():
 	#Creating the asdf file and return control to main menu
 	af = asdf.AsdfFile(tree)
 	af.write_to(fileName + '.asdf')
-	shutil.move(fileName + '.asdf', 'Library/' + fileName + '.asdf')
+	os.chdir(directorLoc)
 	print('Asdf successfully created, returning to main menu')
 	return None

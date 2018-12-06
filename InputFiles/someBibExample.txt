@@ -1,0 +1,11 @@
+@article{burrows2013a,
+  title = {Zinc catalyst for carbon capture},
+  language = {eng},
+  publisher = {AMER CHEMICAL SOC},
+  journal = {Abstracts of Papers of the American Chemical Society},
+  volume = {245},
+  pages = {1011-INOR  , 1011-INOR  },
+  year = {2013},
+  issn = {00657727},
+  author = {Burrows, Rachael A. and Lippert, Cameron and Remias, Joseph E. and Liu, Kunlei and Odom, Susan A.}
+}

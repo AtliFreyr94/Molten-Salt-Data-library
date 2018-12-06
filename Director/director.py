@@ -6,16 +6,20 @@
 # Update a current asdf file by adding a new dataset or removing a dataset if mistakes were made
 # Delete an asdf file from the library, only use if paper is faulty
 import createASDF
-
+import updateASDF
 
 
 onSwitch = True
 while onSwitch:
 	userRequest = input('Do you want to create (C), update (U), delete (D), view (V) or exit (X): ')
 	if userRequest.lower() == 'c':
-		createASDF.createASDF()
+		while True:
+			createASDF.createASDF()
+			stopCreate = input('Stop creating files? (y or n): ')
+			if stopCreate == 'y':
+				break
 	elif userRequest.lower() == 'u':
-		pass
+		updateASDF.updateASDF()
 	elif userRequest.lower() == 'd':
 		pass
 	elif userRequest.lower() == 'v':
